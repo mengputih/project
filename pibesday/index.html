@@ -24,205 +24,44 @@
             cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat984.cur'), auto;
         }
 
-        /* --- DEKORASI BACKGROUND (Awan & Bintang) --- */
-        .sky-decor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .cloud {
-            position: absolute;
-            background: white;
-            border-radius: 50px;
-            opacity: 0.8;
-            animation: floatCloud 20s infinite linear;
-        }
-        
-        /* Membuat bentuk awan simple dengan box-shadow */
-        .cloud::after {
-            content: '';
-            position: absolute;
-            background: white;
-            width: 50%;
-            height: 100%;
-            top: -50%;
-            left: 10%;
-            border-radius: 50%;
-        }
-        .cloud::before {
-            content: '';
-            position: absolute;
-            background: white;
-            width: 40%;
-            height: 80%;
-            top: -40%;
-            right: 10%;
-            border-radius: 50%;
-        }
+        /* --- DEKORASI BACKGROUND --- */
+        .sky-decor { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: -1; }
+        .cloud { position: absolute; background: white; border-radius: 50px; opacity: 0.8; animation: floatCloud 20s infinite linear; }
+        .cloud::after { content: ''; position: absolute; background: white; width: 50%; height: 100%; top: -50%; left: 10%; border-radius: 50%; }
+        .cloud::before { content: ''; position: absolute; background: white; width: 40%; height: 80%; top: -40%; right: 10%; border-radius: 50%; }
+        @keyframes floatCloud { from { transform: translateX(-100%); } to { transform: translateX(100vw); } }
 
-        @keyframes floatCloud {
-            from { transform: translateX(-100%); }
-            to { transform: translateX(100vw); }
-        }
+        /* --- HUJAN HATI --- */
+        .heart { position: fixed; top: -10vh; font-size: 20px; animation: fall linear forwards; z-index: 1; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        /* --- BUNTING FLAGS (Bendera Segitiga) --- */
-        .bunting-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            overflow: hidden;
-            z-index: 10;
-        }
-        
-        .flag {
-            width: 0;
-            height: 0;
-            border-left: 25px solid transparent;
-            border-right: 25px solid transparent;
-            border-top: 60px solid;
-            margin: 0 5px;
-            animation: swing 2s ease-in-out infinite alternate;
-            transform-origin: top center;
-        }
+        /* --- BUNTING FLAGS --- */
+        .bunting-container { position: absolute; top: 0; left: 0; width: 100%; display: flex; justify-content: center; overflow: hidden; z-index: 10; }
+        .flag { width: 0; height: 0; border-left: 25px solid transparent; border-right: 25px solid transparent; border-top: 60px solid; margin: 0 5px; animation: swing 2s ease-in-out infinite alternate; transform-origin: top center; }
+        @keyframes swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
 
-        @keyframes swing {
-            from { transform: rotate(-5deg); }
-            to { transform: rotate(5deg); }
-        }
+        /* --- BALON --- */
+        .balloon { position: absolute; width: 60px; height: 70px; background: #ff6b6b; border-radius: 50%; animation: floatUp 15s infinite ease-in; opacity: 0.9; }
+        .balloon::before { content: ''; position: absolute; bottom: -10px; left: 28px; width: 2px; height: 30px; background: rgba(0,0,0,0.2); }
+        @keyframes floatUp { 0% { bottom: -100px; transform: translateX(0); } 50% { transform: translateX(20px); } 100% { bottom: 110vh; transform: translateX(-20px); } }
 
-        /* --- BALON MELAYANG --- */
-        .balloon {
-            position: absolute;
-            width: 60px;
-            height: 70px;
-            background: #ff6b6b;
-            border-radius: 50%;
-            animation: floatUp 15s infinite ease-in;
-            opacity: 0.9;
-        }
-        .balloon::before {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 28px;
-            width: 2px;
-            height: 30px;
-            background: rgba(0,0,0,0.2);
-        }
-        @keyframes floatUp {
-            0% { bottom: -100px; transform: translateX(0); }
-            50% { transform: translateX(20px); }
-            100% { bottom: 110vh; transform: translateX(-20px); }
-        }
+        /* --- KONTEN --- */
+        .container { padding: 40px 20px; max-width: 800px; margin: 0 auto; position: relative; z-index: 5; }
+        h1 { font-family: 'Fredoka One', cursive; color: #fff; font-size: 3.5rem; text-shadow: 4px 4px 0px #3498db; margin-bottom: 10px; animation: popIn 1s ease; }
+        .highlight-name { color: #FFEaa7; text-shadow: 4px 4px 0px #e67e22; display: inline-block; transform: rotate(-3deg); }
 
-        /* --- KONTEN UTAMA --- */
-        .container {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 5;
-        }
+        .start-btn { background-color: #fff; border: 4px solid #3498db; padding: 15px 40px; font-size: 1.8rem; color: #3498db; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 0px #2980b9; transition: all 0.2s; font-family: 'Fredoka One', cursive; margin-top: 20px; }
+        .start-btn:active { transform: translateY(8px); box-shadow: none; }
 
-        h1 {
-            font-family: 'Fredoka One', cursive;
-            color: #fff;
-            font-size: 3.5rem;
-            text-shadow: 4px 4px 0px #3498db;
-            margin-bottom: 10px;
-            animation: popIn 1s ease;
-        }
+        /* --- 1. LIFE COUNTER STYLE --- */
+        .counter-box { background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 20px; margin: 20px auto; display: none; border: 3px solid #3498db; max-width: 450px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .counter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; font-weight: bold; font-size: 1.3rem; color: #3498db; }
 
-        .highlight-name {
-            color: #FFEaa7; /* Warna Kuning untuk Asha */
-            text-shadow: 4px 4px 0px #e67e22;
-            display: inline-block;
-            transform: rotate(-3deg);
-        }
+        .cat-zone { margin: 40px auto; width: 300px; height: 300px; background: rgba(255, 255, 255, 0.6); border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 5px dashed #fff; }
+        .cat-img { width: 200px; cursor: pointer; transition: 0.3s; }
 
-        /* Tombol Utama */
-        .start-btn {
-            background-color: #fff;
-            border: 4px solid #3498db;
-            padding: 15px 40px;
-            font-size: 1.8rem;
-            color: #3498db;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 0px #2980b9;
-            transition: all 0.2s;
-            font-family: 'Fredoka One', cursive;
-            margin-top: 20px;
-        }
-
-        .start-btn:hover {
-            transform: translateY(4px);
-            box-shadow: 0 4px 0px #2980b9;
-            background-color: #E0F7FA;
-        }
-
-        .start-btn:active {
-            transform: translateY(8px);
-            box-shadow: none;
-        }
-
-        /* Area Kucing Interaktif */
-        .cat-zone {
-            margin: 40px auto;
-            position: relative;
-            width: 300px;
-            height: 300px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 5px dashed #fff;
-            box-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
-        }
-
-        .cat-img {
-            width: 200px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .cat-img:hover {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .cat-img:active {
-            transform: scale(0.9);
-        }
-
-        /* Pesan Tersembunyi */
-        .message-box {
-            display: none;
-            background: #fff;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            margin-top: 30px;
-            border: 3px solid #AED6F1;
-            position: relative;
-        }
-        
-        .message-box::before {
-            content: '💌';
-            font-size: 40px;
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+        /* --- 2. MESSAGE BOX (TYPEWRITER) --- */
+        .message-box { display: none; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-top: 30px; border: 3px solid #AED6F1; text-align: left; font-size: 1.2rem; line-height: 1.6; min-height: 50px; }
 
         .photo-gallery {
             margin-top: 40px;
@@ -244,30 +83,22 @@
             background: #eee;
         }
 
-        .photo-gallery img:hover {
+         .photo-gallery img:hover {
             transform: scale(1.2) rotate(0deg);
             z-index: 10;
         }
+        
+        /* --- 4. TOMBOL JANGAN DIKLIK --- */
+        .dont-click { background: #ff6b6b; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 40px; font-family: 'Fredoka One'; box-shadow: 0 5px 0px #c0392b; }
 
-        footer {
-            margin-top: 60px;
-            color: #fff;
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            padding-bottom: 20px;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            80% { transform: scale(1.1); }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        footer { margin-top: 60px; color: #fff; font-size: 1.2rem; padding-bottom: 20px; }
+        @keyframes popIn { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
 
     <div class="bunting-container">
-        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+         <div class="flag" style="border-top-color: #FF6B6B;"></div>
         <div class="flag" style="border-top-color: #4ECDC4;"></div>
         <div class="flag" style="border-top-color: #FFE66D;"></div>
         <div class="flag" style="border-top-color: #FF6B6B;"></div>
@@ -303,80 +134,116 @@
         <button class="start-btn" onclick="celebrate()">🎁 Open Gift! 🎁</button>
 
         <div id="main-content" style="display:none; margin-top: 20px;">
+
+            <div class="counter-box" id="counter-box">
+                <h3 style="margin-top:0;">Kamu sudah mencerahkan dunia selama:</h3>
+                <div class="counter-grid">
+                    <div id="c-days">0 Hari</div>
+                    <div id="c-hours">0 Jam</div>
+                    <div id="c-mins">0 Menit</div>
+                    <div id="c-secs">0 Detik</div>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 10px;">❤️❤️❤️❤️❤️❤️❤️❤️❤️</p>
+            </div>
             
             <div class="cat-zone">
                 <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4cW15eXJ6M3R4cW15eXJ6M3R4cW15eXJ6M3R4cW15eXJ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZF9jdCZjdD1z/Lq0h93752f6J9tijrh/giphy.gif" class="cat-img" onclick="meow()" alt="Cute Cat">
             </div>
-            <p style="color: #666;">(Psst.. coba klik kucingnya!)</p>
+            <p style="color: #666;">click memengnyaa!! udah meong meong (^・ω・^ )</p>
 
-            <div id="love-message" class="message-box">
-                <h3>Happy Birthday, Asha! 🐱✨</h3>
-                <p>Selamat ulang tahun yang ke-24! 🥳<br>
-                Meskipun jarak kita jauh (Indo - Jepang), tapi doa dan semangatku selalu dekat buat kamu.<br>
-                Semangat terus ya di sana! Jaga kesehatan & jangan lupa makan enak hari ini! 🍣🍜</p>
-            </div>
+            <div id="love-message" class="message-box"></div>
 
             <div class="photo-gallery">
-                <img src="pict\pict1.jpg" style="--r: -5deg" alt="Foto Kenangan 1">
-                <img src="pict\pict2.jpg" style="--r: 3deg" alt="Foto Kenangan 2">
-                <img src="pict\pict3.jpg" style="--r: -3deg" alt="Foto Kenangan 3">
+                <img src="pict/pict1.jpg" style="--r: -5deg" alt="Foto 1">
+                <img src="pict/pict2.jpg" style="--r: 3deg" alt="Foto 2">
+                <img src="pict/pict3.jpg" style="--r: -3deg" alt="Foto 3">
             </div>
+
+            <button class="dont-click" onclick="angryCat()">JANGAN DIKLIK! ❌</button>
         </div>
 
-        <footer>
-            Made with 💙 & 🐱
-        </footer>
+        <footer>Made with 💙 & 🐱</footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
     <script>
+        // Logika Life Counter
+        function updateCounter() {
+            const birthDate = new Date('2001-12-26T00:00:00');
+            const now = new Date();
+            const diff = now - birthDate;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const mins = Math.floor(diff / (1000 * 60));
+            const secs = Math.floor(diff / 1000);
+
+            document.getElementById('c-days').innerText = days.toLocaleString() + " Hari";
+            document.getElementById('c-hours').innerText = hours.toLocaleString() + " Jam";
+            document.getElementById('c-mins').innerText = mins.toLocaleString() + " Menit";
+            document.getElementById('c-secs').innerText = secs.toLocaleString() + " Detik";
+        }
+
+        // Logika Hujan Hati
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+
+        // Logika Typewriter
+        let i = 0;
+        const msg = "Happy Birthday, Asha! 🐱✨ terimakasih telah lahir kedunia ini ヾ(≧へ≦)〃.. semoga hal yang kamu inginkan terwujud di umur ini dan di beri kesehatan serta umur yang panjang!! doa dan semangatku selalu dekat buat kamu. Semangat terus ya di sana! & jangan lupa makan enak hari ini! 🍣🍜 Meow~ ❤️";
+        
+        function startTypewriter() {
+            if (i < msg.length) {
+                document.getElementById('love-message').innerHTML += msg.charAt(i);
+                i++;
+                setTimeout(startTypewriter, 50);
+            }
+        }
+
         function celebrate() {
-    // 1. Jalankan Musik
-    // Pastikan nama file di bawah sama persis dengan yang ada di folder (perhatikan huruf besar/kecil)
-    var audio = new Audio('pict/backsound-alamak.mp3'); 
-    audio.play().catch(function(error) {
-        console.log("Autoplay dicegah oleh browser, tapi akan jalan setelah klik.");
-    });
+            // Putar Musik
+            var audio = new Audio('pict/backsound-alamak.mp3'); 
+            audio.play().catch(e => console.log("Audio play blocked"));
 
-    // 2. Tampilkan Konten
-    var content = document.getElementById('main-content');
-    content.style.display = 'block';
-    
-    // 3. Auto Scroll halus
-    setTimeout(() => {
-        content.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+            // Tampilkan Konten
+            document.getElementById('main-content').style.display = 'block';
+            document.getElementById('counter-box').style.display = 'block';
+            
+            // Jalankan Counter & Hati
+            setInterval(updateCounter, 1000);
+            setInterval(createHeart, 300);
 
-    // 4. Efek Confetti (tetap sama seperti kode sebelumnya)
-    var duration = 3 * 1000;
-    var end = Date.now() + duration;
-    (function frame() {
-        confetti({
-            particleCount: 5, angle: 60, spread: 55, origin: { x: 0 },
-            colors: ['#ff6b6b', '#feca57', '#54a0ff']
-        });
-        confetti({
-            particleCount: 5, angle: 120, spread: 55, origin: { x: 1 },
-            colors: ['#ff6b6b', '#feca57', '#54a0ff']
-        });
-        if (Date.now() < end) { requestAnimationFrame(frame); }
-    }());
-}
+            // Confetti
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+            (function frame() {
+                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
+                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+
+            setTimeout(() => { document.getElementById('counter-box').scrollIntoView({ behavior: 'smooth' }); }, 100);
+        }
+
         function meow() {
             document.getElementById('love-message').style.display = 'block';
+            // Reset pesan kalau mau diklik ulang
+            if(i === 0) { startTypewriter(); }
             
-            // Efek ledakan confetti kecil saat kucing diklik
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+            alert("Meow!🐱 Asha ada pesan buat kamu di bawah kotak kucingnya!");
+        }
 
-            alert("Meow!🐱 klik -ok- nyaw");
+        function angryCat() {
+            alert("Tuh kan dibilangin jangan diklik! 😾 Kucingnya ngambek nih! Hehehe, happy birthday ya!");
         }
     </script>
 </body>
-
 </html>
-
