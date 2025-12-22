@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Asha! ☁️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky-blue: #87CEEB;
+            --cloud-white: #F0F8FF;
+            --pastel-pink: #FFB7B2;
+            --primary-text: #2c3e50;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--sky-blue) 0%, #E0F7FA 100%);
+            font-family: 'Patrick Hand', cursive;
+            text-align: center;
+            margin: 0;
+            overflow-x: hidden;
+            min-height: 100vh;
+            color: var(--primary-text);
+            cursor: url('https://cur.cursors-4u.net/nature/nat-10/nat984.cur'), auto;
+        }
+
+        /* --- DEKORASI BACKGROUND (Awan & Bintang) --- */
+        .sky-decor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.8;
+            animation: floatCloud 20s infinite linear;
+        }
+        
+        /* Membuat bentuk awan simple dengan box-shadow */
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            width: 50%;
+            height: 100%;
+            top: -50%;
+            left: 10%;
+            border-radius: 50%;
+        }
+        .cloud::before {
+            content: '';
+            position: absolute;
+            background: white;
+            width: 40%;
+            height: 80%;
+            top: -40%;
+            right: 10%;
+            border-radius: 50%;
+        }
+
+        @keyframes floatCloud {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100vw); }
+        }
+
+        /* --- BUNTING FLAGS (Bendera Segitiga) --- */
+        .bunting-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .flag {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-top: 60px solid;
+            margin: 0 5px;
+            animation: swing 2s ease-in-out infinite alternate;
+            transform-origin: top center;
+        }
+
+        @keyframes swing {
+            from { transform: rotate(-5deg); }
+            to { transform: rotate(5deg); }
+        }
+
+        /* --- BALON MELAYANG --- */
+        .balloon {
+            position: absolute;
+            width: 60px;
+            height: 70px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: floatUp 15s infinite ease-in;
+            opacity: 0.9;
+        }
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 28px;
+            width: 2px;
+            height: 30px;
+            background: rgba(0,0,0,0.2);
+        }
+        @keyframes floatUp {
+            0% { bottom: -100px; transform: translateX(0); }
+            50% { transform: translateX(20px); }
+            100% { bottom: 110vh; transform: translateX(-20px); }
+        }
+
+        /* --- KONTEN UTAMA --- */
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #fff;
+            font-size: 3.5rem;
+            text-shadow: 4px 4px 0px #3498db;
+            margin-bottom: 10px;
+            animation: popIn 1s ease;
+        }
+
+        .highlight-name {
+            color: #FFEaa7; /* Warna Kuning untuk Asha */
+            text-shadow: 4px 4px 0px #e67e22;
+            display: inline-block;
+            transform: rotate(-3deg);
+        }
+
+        /* Tombol Utama */
+        .start-btn {
+            background-color: #fff;
+            border: 4px solid #3498db;
+            padding: 15px 40px;
+            font-size: 1.8rem;
+            color: #3498db;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 0px #2980b9;
+            transition: all 0.2s;
+            font-family: 'Fredoka One', cursive;
+            margin-top: 20px;
+        }
+
+        .start-btn:hover {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0px #2980b9;
+            background-color: #E0F7FA;
+        }
+
+        .start-btn:active {
+            transform: translateY(8px);
+            box-shadow: none;
+        }
+
+        /* Area Kucing Interaktif */
+        .cat-zone {
+            margin: 40px auto;
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px dashed #fff;
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.5);
+        }
+
+        .cat-img {
+            width: 200px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cat-img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .cat-img:active {
+            transform: scale(0.9);
+        }
+
+        /* Pesan Tersembunyi */
+        .message-box {
+            display: none;
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-top: 30px;
+            border: 3px solid #AED6F1;
+            position: relative;
+        }
+        
+        .message-box::before {
+            content: '💌';
+            font-size: 40px;
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .photo-gallery {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .photo-gallery img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 4px solid #fff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: rotate(var(--r));
+            transition: 0.3s;
+            background: #eee;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.2) rotate(0deg);
+            z-index: 10;
+        }
+
+        footer {
+            margin-top: 60px;
+            color: #fff;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            padding-bottom: 20px;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bunting-container">
+        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+        <div class="flag" style="border-top-color: #4ECDC4;"></div>
+        <div class="flag" style="border-top-color: #FFE66D;"></div>
+        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+        <div class="flag" style="border-top-color: #4ECDC4;"></div>
+        <div class="flag" style="border-top-color: #FFE66D;"></div>
+        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+        <div class="flag" style="border-top-color: #4ECDC4;"></div>
+        <div class="flag" style="border-top-color: #FFE66D;"></div>
+        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+        <div class="flag" style="border-top-color: #4ECDC4;"></div>
+        <div class="flag" style="border-top-color: #FFE66D;"></div>
+        <div class="flag" style="border-top-color: #FF6B6B;"></div>
+        <div class="flag" style="border-top-color: #4ECDC4;"></div>
+    </div>
+
+    <div class="sky-decor">
+        <div class="cloud" style="width: 150px; height: 50px; top: 10%; left: -20%;"></div>
+        <div class="cloud" style="width: 200px; height: 70px; top: 30%; left: -40%; animation-duration: 25s;"></div>
+        <div class="cloud" style="width: 120px; height: 40px; top: 70%; left: -10%; animation-duration: 18s;"></div>
+        
+        <div class="balloon" style="left: 10%; background: #FF9FF3; animation-delay: 0s;"></div>
+        <div class="balloon" style="left: 85%; background: #54a0ff; animation-delay: 5s;"></div>
+        <div class="balloon" style="left: 20%; background: #feca57; animation-delay: 8s;"></div>
+    </div>
+
+    <div class="container">
+        <h1>Happy 24th Birthday <br><span class="highlight-name">ASHA!</span> 🎂</h1>
+        <p style="font-size: 1.2rem; background: rgba(255,255,255,0.5); padding: 5px 15px; border-radius: 20px; display:inline-block;">
+            Special surprise from ivi (p≧w≦q)
+        </p>
+        <br>
+        
+        <button class="start-btn" onclick="celebrate()">🎁 Open Gift! 🎁</button>
+
+        <div id="main-content" style="display:none; margin-top: 20px;">
+            
+            <div class="cat-zone">
+                <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3R4cW15eXJ6M3R4cW15eXJ6M3R4cW15eXJ6M3R4cW15eXJ6JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZF9jdCZjdD1z/Lq0h93752f6J9tijrh/giphy.gif" class="cat-img" onclick="meow()" alt="Cute Cat">
+            </div>
+            <p style="color: #666;">(Psst.. coba klik kucingnya!)</p>
+
+            <div id="love-message" class="message-box">
+                <h3>Happy Birthday, Asha! 🐱✨</h3>
+                <p>Selamat ulang tahun yang ke-24! 🥳<br>
+                Meskipun jarak kita jauh (Indo - Jepang), tapi doa dan semangatku selalu dekat buat kamu.<br>
+                Semangat terus ya di sana! Jaga kesehatan & jangan lupa makan enak hari ini! 🍣🍜</p>
+            </div>
+
+            <div class="photo-gallery">
+                <img src="pict\pict1.jpg" style="--r: -5deg" alt="Foto Kenangan 1">
+                <img src="pict\pict2.jpg" style="--r: 3deg" alt="Foto Kenangan 2">
+                <img src="pict\pict3.jpg" style="--r: -3deg" alt="Foto Kenangan 3">
+            </div>
+        </div>
+
+        <footer>
+            Made with 💙 & 🐱
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <script>
+        function celebrate() {
+            var content = document.getElementById('main-content');
+            content.style.display = 'block';
+            
+            // Auto Scroll halus ke area konten
+            setTimeout(() => {
+                content.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+
+            // Efek Confetti yang lebih heboh
+            var duration = 3 * 1000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#ff6b6b', '#feca57', '#54a0ff']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#ff6b6b', '#feca57', '#54a0ff']
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+
+        function meow() {
+            document.getElementById('love-message').style.display = 'block';
+            
+            // Efek ledakan confetti kecil saat kucing diklik
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            alert("Meow!🐱 klik -ok- nyaw");
+        }
+    </script>
+</body>
+</html>
