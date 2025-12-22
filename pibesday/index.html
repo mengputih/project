@@ -332,6 +332,38 @@
 
     <script>
         function celebrate() {
+    // 1. Jalankan Musik
+    // Pastikan nama file di bawah sama persis dengan yang ada di folder (perhatikan huruf besar/kecil)
+    var audio = new Audio('pict/backsound-alamak.mp3'); 
+    audio.play().catch(function(error) {
+        console.log("Autoplay dicegah oleh browser, tapi akan jalan setelah klik.");
+    });
+
+    // 2. Tampilkan Konten
+    var content = document.getElementById('main-content');
+    content.style.display = 'block';
+    
+    // 3. Auto Scroll halus
+    setTimeout(() => {
+        content.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+
+    // 4. Efek Confetti (tetap sama seperti kode sebelumnya)
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
+    (function frame() {
+        confetti({
+            particleCount: 5, angle: 60, spread: 55, origin: { x: 0 },
+            colors: ['#ff6b6b', '#feca57', '#54a0ff']
+        });
+        confetti({
+            particleCount: 5, angle: 120, spread: 55, origin: { x: 1 },
+            colors: ['#ff6b6b', '#feca57', '#54a0ff']
+        });
+        if (Date.now() < end) { requestAnimationFrame(frame); }
+    }());
+}
+        function celebrate() {
             var content = document.getElementById('main-content');
             content.style.display = 'block';
             
@@ -380,4 +412,5 @@
         }
     </script>
 </body>
+
 </html>
