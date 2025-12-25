@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asha's Secret Notes 📝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            background: #f0f4f8; 
+            font-family: 'Patrick Hand', cursive; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+        }
+        .scrapbook-page { 
+            background: white; 
+            width: 90%; 
+            max-width: 450px; 
+            padding: 40px 25px; 
+            border-radius: 10px; 
+            box-shadow: 10px 10px 0px rgba(135, 206, 235, 0.4); 
+            border: 2px solid #3498db; 
+            position: relative; 
+        }
+        .tape { 
+            position: absolute; 
+            width: 80px; 
+            height: 25px; 
+            background: rgba(135, 206, 235, 0.6); 
+            top: -12px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+        }
+        h2 { font-family: 'Fredoka One', cursive; color: #3498db; text-align: center; margin-bottom: 5px; }
+        p { text-align: center; color: #666; font-size: 1rem; margin-bottom: 20px; }
+        
+        .notes-area {
+            width: 100%;
+            height: 250px;
+            padding: 15px;
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            background: #fdfdfd;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            color: #2c3e50;
+            resize: none;
+            box-sizing: border-box;
+            line-height: 1.5;
+            outline: none;
+        }
+
+        .save-indicator {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #2ecc71;
+            margin-top: 5px;
+            height: 20px;
+            visibility: hidden;
+        }
+
+        .btn-kirim { 
+            width: 100%; 
+            padding: 15px; 
+            background: #ffb7b2; 
+            border: none; 
+            border-radius: 10px; 
+            color: white; 
+            font-family: 'Fredoka One', cursive; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            margin-top: 20px; 
+            box-shadow: 0 4px 0 #e5a5a1; 
+        }
+        
+        /* Kontrol Audio Kecil di Pojok */
+        .music-control {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.6;
+        }
+
+        .back-link { display: block; text-align: center; margin-top: 25px; color: #aaa; text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="pict\come-closer.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="scrapbook-page">
+        <div class="tape"></div>
+        <div class="music-control" onclick="toggleMusic()" id="musicIcon">🎵</div>
+        
+        <h2>Asha's Secret Notes 📝</h2>
+        <p>Asha bebas tulis apa aja di sini... ✨ play musicnya juga ヾ(≧へ≦)〃</p>
+        
+        <textarea id="ashaNote" class="notes-area" placeholder="Tulis isi hatimu......"></textarea>
+        <div id="saveText" class="save-indicator">Tersimpan otomatis... ✓</div>
+
+        <button class="btn-kirim" onclick="sendHeart()">Kirim Semangat! ✈️</button>
+        <a href="index.html" class="back-link">← Kembali ke halaman depan</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script>
+        const noteArea = document.getElementById('ashaNote');
+        const saveIndicator = document.getElementById('saveText');
+        const music = document.getElementById('bgMusic');
+        let musicStarted = false;
+
+        // 1. Ambil data saat halaman dibuka
+        window.onload = function() {
+            const savedNote = localStorage.getItem('ashaPersonalNote');
+            if (savedNote) {
+                noteArea.value = savedNote;
+            }
+        };
+
+        // 2. Simpan & Mulai Musik saat mengetik
+        noteArea.addEventListener('input', function() {
+            localStorage.setItem('ashaPersonalNote', noteArea.value);
+            
+            // Memulai musik saat pertama kali Asha mulai mengetik
+            if (!musicStarted) {
+                music.play().catch(e => console.log("Musik butuh interaksi"));
+                musicStarted = true;
+            }
+
+            saveIndicator.style.visibility = 'visible';
+            setTimeout(() => {
+                saveIndicator.style.visibility = 'hidden';
+            }, 1000);
+        });
+
+        // Kontrol Musik Manual
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById('musicIcon').innerText = "🎵";
+            } else {
+                music.pause();
+                document.getElementById('musicIcon').innerText = "🔇";
+            }
+        }
+
+        function sendHeart() {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 }, colors: ['#ffb7b2'] });
+            alert("semoga apa yang kamu tulis terwujud ya! ✨");
+        }
+
+    </script>
+</body>
+</html>
