@@ -84,10 +84,10 @@
         }
 
          .photo-gallery img:hover {
-            transform: scale(1.5) rotate(0deg);
+            transform: scale(1.6) rotate(0deg);
             z-index: 10;
         }
-        
+
         /* --- 4. TOMBOL JANGAN DIKLIK --- */
         .dont-click { background: #ff6b6b; color: white; border: none; padding: 12px 25px; border-radius: 50px; cursor: pointer; margin-top: 40px; font-family: 'Fredoka One'; box-shadow: 0 5px 0px #c0392b; }
 
@@ -163,6 +163,15 @@
         </div>
 
         <footer>Made with 💙 & 🐱</footer>
+
+        <div id="secret-button-container" style="display: none; margin-top: 50px; margin-bottom: 30px;">
+    <p style="color: #666; font-size: 0.9rem;">Ada satu hal lagi di sini...</p>
+    <a href="hadiah.html" style="text-decoration: none;">
+        <button class="start-btn" style="font-size: 1.2rem; padding: 10px 30px; background-color: #FFEaa7; border-color: #e67e22; color: #e67e22;">
+            ✨ ini apaa yaa? (´･ω･`)? ✨
+        </button>
+    </a>
+</div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
@@ -208,29 +217,33 @@
         }
 
         function celebrate() {
-            // Putar Musik
-            var audio = new Audio('pict/backsound-alamak.mp3'); 
-            audio.play().catch(e => console.log("Audio play blocked"));
+    // Putar Musik
+    var audio = new Audio('pict/backsound-alamak.mp3'); 
+    audio.play().catch(e => console.log("Audio play blocked"));
 
-            // Tampilkan Konten
-            document.getElementById('main-content').style.display = 'block';
-            document.getElementById('counter-box').style.display = 'block';
-            
-            // Jalankan Counter & Hati
-            setInterval(updateCounter, 1000);
-            setInterval(createHeart, 300);
+    // Tampilkan Konten Utama
+    document.getElementById('main-content').style.display = 'block';
+    document.getElementById('counter-box').style.display = 'block';
+    
+    // --- TAMBAHKAN BARIS INI ---
+    document.getElementById('secret-button-container').style.display = 'block';
+    // ---------------------------
 
-            // Confetti
-            var duration = 3 * 1000;
-            var end = Date.now() + duration;
-            (function frame() {
-                confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
-                confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
-                if (Date.now() < end) { requestAnimationFrame(frame); }
-            }());
+    // Jalankan Counter & Hati
+    setInterval(updateCounter, 1000);
+    setInterval(createHeart, 300);
 
-            setTimeout(() => { document.getElementById('counter-box').scrollIntoView({ behavior: 'smooth' }); }, 100);
-        }
+    // Efek Confetti
+    var duration = 3 * 1000;
+    var end = Date.now() + duration;
+    (function frame() {
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#ff6b6b', '#feca57', '#54a0ff'] });
+        if (Date.now() < end) { requestAnimationFrame(frame); }
+    }());
+
+    setTimeout(() => { document.getElementById('counter-box').scrollIntoView({ behavior: 'smooth' }); }, 100);
+}
 
         function meow() {
             document.getElementById('love-message').style.display = 'block';
@@ -247,5 +260,3 @@
     </script>
 </body>
 </html>
-
-
